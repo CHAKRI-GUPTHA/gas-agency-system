@@ -574,6 +574,47 @@ button:hover::after {
   }
 }
 
+@media (max-width: 900px) {
+  body::after {
+    animation: none;
+    opacity: 0.25;
+    filter: blur(45px);
+  }
+
+  .page-frame::before {
+    animation: electricFlow 8s linear infinite;
+    filter: drop-shadow(0 0 6px rgba(82, 196, 255, 0.7))
+      drop-shadow(0 0 14px rgba(82, 196, 255, 0.4));
+  }
+
+  .card::after {
+    animation: none;
+    opacity: 0.25;
+  }
+
+  .card::before,
+  .qr-card::before {
+    animation: electricFlow 10s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::after,
+  .page-frame::before,
+  .card::before,
+  .qr-card::before,
+  .card::after {
+    animation: none !important;
+  }
+}
+
 @keyframes aurora {
   0% {
     transform: translate3d(-5%, -3%, 0) rotate(0deg);
