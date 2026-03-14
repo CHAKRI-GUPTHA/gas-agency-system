@@ -51,18 +51,32 @@
           <h2 class="section-title">Register First</h2>
           <div class="grid">
             <div class="card">
-              <form id="register-form" method="post">
+              <form id="register-form" method="post" autocomplete="off">
                 <h3 class="section-title">New Registration</h3>
                 <label for="name">Full Name</label>
-                <input id="name" name="name" type="text" placeholder="Full name" required />
+                <input id="name" name="name" type="text" placeholder="Full name" required autocomplete="off" />
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@email.com" required />
+                <input id="email" name="email" type="email" placeholder="you@email.com" required autocomplete="off" />
                 <label for="password">Password</label>
-                <input id="password" name="password" type="password" placeholder="Create password" required />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Create password"
+                  required
+                  autocomplete="new-password"
+                />
                 <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" placeholder="Phone number" required />
+                <input id="phone" name="phone" type="tel" placeholder="Phone number" required autocomplete="off" />
                 <label for="address">Address</label>
-                <textarea id="address" name="address" rows="2" placeholder="Delivery address" required></textarea>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="2"
+                  placeholder="Delivery address"
+                  required
+                  autocomplete="off"
+                ></textarea>
                 <button type="submit">Register</button>
               </form>
             </div>
@@ -71,10 +85,17 @@
           <h2 class="section-title">Already Registered? Login Below</h2>
           <div class="grid">
             <div class="card">
-              <form id="login-form" method="post">
+              <form id="login-form" method="post" autocomplete="off">
                 <h3 class="section-title">Email Login</h3>
                 <label for="login-email">Email</label>
-                <input id="login-email" name="email" type="email" placeholder="you@email.com" required />
+                <input
+                  id="login-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@email.com"
+                  required
+                  autocomplete="off"
+                />
                 <label for="login-password">Password</label>
                 <input
                   id="login-password"
@@ -82,13 +103,14 @@
                   type="password"
                   placeholder="Enter your password"
                   required
+                  autocomplete="current-password"
                 />
                 <button type="submit">Login</button>
               </form>
             </div>
 
             <div class="card">
-              <form id="phone-form" method="post">
+              <form id="phone-form" method="post" autocomplete="off">
                 <h3 class="section-title">Phone OTP Login</h3>
                 <label for="phone-login">Phone (with country code)</label>
                 <input
@@ -97,15 +119,23 @@
                   type="tel"
                   placeholder="+91XXXXXXXXXX"
                   required
+                  autocomplete="off"
                 />
                 <div id="recaptcha-container"></div>
                 <button type="submit">Send OTP</button>
               </form>
 
-              <form id="otp-form" method="post">
+              <form id="otp-form" method="post" autocomplete="off">
                 <h3 class="section-title">Verify OTP</h3>
                 <label for="otp-code">Enter OTP</label>
-                <input id="otp-code" name="otp" type="text" placeholder="6-digit OTP" required />
+                <input
+                  id="otp-code"
+                  name="otp"
+                  type="text"
+                  placeholder="6-digit OTP"
+                  required
+                  autocomplete="one-time-code"
+                />
                 <button type="submit">Verify OTP</button>
               </form>
             </div>
