@@ -321,7 +321,7 @@ onAuthStateChanged(auth, async (user) => {
 
     const userData = userDoc.data();
     if (userData.role !== "admin") {
-      goToPage("user.html");
+      goToPage("index.html");
       return;
     }
 
