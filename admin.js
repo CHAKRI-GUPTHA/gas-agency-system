@@ -32,6 +32,25 @@ const showMessage = (text, tone = "info") => {
   messageBox.dataset.tone = tone;
 };
 
+const IDLE_MS = 5 * 60 * 1000;
+let idleTimer = null;
+
+const startIdleTimer = () => {
+  if (idleTimer) clearTimeout(idleTimer);
+  idleTimer = setTimeout(async () => {
+    await signOut(auth);
+    goToPage("index.html");
+  }, IDLE_MS);
+};
+
+const bindActivityListeners = () => {
+  const events = ["mousemove", "keydown", "click", "scroll", "touchstart"];
+  events.forEach((evt) => {
+    window.addEventListener(evt, startIdleTimer, { passive: true });
+  });
+  startIdleTimer();
+};
+
 
 const logEvent = async (uid, action, details = {}) => {
   try {
@@ -327,6 +346,7 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     activeAdmin = { id: user.uid, ...userData };
+    bindActivityListeners();
     if (adminName) adminName.textContent = userData.name;
     await loadDashboard();
   } catch (err) {

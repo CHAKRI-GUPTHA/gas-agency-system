@@ -33,6 +33,25 @@ const showMessage = (text, tone = "info") => {
   messageBox.dataset.tone = tone;
 };
 
+const IDLE_MS = 5 * 60 * 1000;
+let idleTimer = null;
+
+const startIdleTimer = () => {
+  if (idleTimer) clearTimeout(idleTimer);
+  idleTimer = setTimeout(async () => {
+    await signOut(auth);
+    goToPage("index.html");
+  }, IDLE_MS);
+};
+
+const bindActivityListeners = () => {
+  const events = ["mousemove", "keydown", "click", "scroll", "touchstart"];
+  events.forEach((evt) => {
+    window.addEventListener(evt, startIdleTimer, { passive: true });
+  });
+  startIdleTimer();
+};
+
 
 const toggleQr = () => {
   if (!paymentSelect || !phonepeQr) return;
@@ -125,6 +144,7 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     activeUser = { id: user.uid, ...userData };
+    bindActivityListeners();
     profileName.textContent = userData.name;
     if (portalName) portalName.textContent = userData.name || "Customer";
     profileEmail.textContent = userData.email;
