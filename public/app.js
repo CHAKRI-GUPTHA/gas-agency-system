@@ -51,6 +51,10 @@ if (isIndexPage) {
   signOut(auth).catch(() => undefined);
 }
 
+const markLoginEntry = () => {
+  sessionStorage.setItem("allowPageLoad", "1");
+};
+
 const bindToggle = (button, input) => {
   if (!button || !input) return;
   button.addEventListener("click", () => {
@@ -167,6 +171,7 @@ if (registerForm) {
 
       await logEvent(user.uid, "register", { role });
       showMessage("Registration successful. Redirecting...", "success");
+      markLoginEntry();
       routeByRole(role);
     } catch (err) {
       showMessage(err.message, "error");
@@ -191,6 +196,7 @@ if (loginForm) {
       const profile = await ensureUserProfile(result.user, email);
       await logEvent(result.user.uid, "login", { role: profile.role });
       showMessage("Login successful. Redirecting...", "success");
+      markLoginEntry();
       routeByRole(profile.role);
     } catch (err) {
       showMessage(err.message, "error");
@@ -236,6 +242,7 @@ if (otpForm) {
       const profile = await ensureUserProfile(result.user, null, result.user.phoneNumber);
       await logEvent(result.user.uid, "login_phone", { role: profile.role });
       showMessage("OTP verified. Redirecting...", "success");
+      markLoginEntry();
       routeByRole(profile.role);
     } catch (err) {
       showMessage("Invalid OTP. Please try again.", "error");

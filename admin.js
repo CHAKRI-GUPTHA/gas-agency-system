@@ -32,6 +32,12 @@ const showMessage = (text, tone = "info") => {
   messageBox.dataset.tone = tone;
 };
 
+const consumeEntryToken = () => {
+  const allowed = sessionStorage.getItem("allowPageLoad") === "1";
+  if (allowed) sessionStorage.removeItem("allowPageLoad");
+  return allowed;
+};
+
 const logEvent = async (uid, action, details = {}) => {
   try {
     await addDoc(collection(db, "logs"), {
@@ -308,6 +314,12 @@ if (logoutBtn) {
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
+    goToPage("index.html");
+    return;
+  }
+
+  if (!consumeEntryToken()) {
+    await signOut(auth);
     goToPage("index.html");
     return;
   }
