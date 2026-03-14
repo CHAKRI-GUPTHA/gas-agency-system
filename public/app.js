@@ -32,6 +32,7 @@ const loginPass = document.querySelector("#login-password");
 const showRegisterPass = document.querySelector("#show-register-pass");
 const showLoginPass = document.querySelector("#show-login-pass");
 const messageBox = document.querySelector("#message");
+const isIndexPage = /\/(index\.html)?$/.test(window.location.pathname);
 
 const showMessage = (text, tone = "info") => {
   if (!messageBox) return;
@@ -44,6 +45,10 @@ showMessage("Ready. Please login or register.", "info");
 setPersistence(auth, inMemoryPersistence).catch((err) => {
   console.warn("Auth persistence not set", err);
 });
+
+if (isIndexPage) {
+  signOut(auth).catch(() => undefined);
+}
 
 const bindToggle = (button, input) => {
   if (!button || !input) return;
@@ -239,6 +244,7 @@ if (otpForm) {
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) return;
+  if (isIndexPage) return;
   try {
     const profile = await ensureUserProfile(user);
     routeByRole(profile.role);
