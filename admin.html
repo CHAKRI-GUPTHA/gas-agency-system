@@ -3,12 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="0; url=https://gasagencysystem-f1738.web.app/admin.html" />
-    <title>Admin | Gas Agency System</title>
+    <title>Admin Console | Gas Agency System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0b1320" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <script>
-      window.location.replace("https://gasagencysystem-f1738.web.app/admin.html");
-    </script>
+    <div class="page-frame"></div>
+    <header>
+      <div>
+        <div class="tag">Admin Console</div>
+        <div class="brand">Operations Control</div>
+      </div>
+      <div class="toolbar">
+        <div class="badge">Welcome, <span id="admin-name">Admin</span></div>
+        <button id="logout" class="secondary">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h2 class="section-title">System Snapshot</h2>
+          <div class="grid">
+            <div>
+              <div class="meta">Total Users</div>
+              <div class="brand" id="stat-users">-</div>
+            </div>
+            <div>
+              <div class="meta">Pending Requests</div>
+              <div class="brand" id="stat-pending">-</div>
+            </div>
+          </div>
+          <div id="admin-message" class="message" data-tone="info"></div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Pending Bookings</h2>
+          <div id="pending-list" class="list"></div>
+        </div>
+      </section>
+
+      <section class="hero">
+        <div class="card">
+          <h2 class="section-title">Send Notification</h2>
+          <form id="notify-form">
+            <label for="audience">Audience</label>
+            <select id="audience" name="audience" required>
+              <option value="all">All Users</option>
+              <option value="user">Single User (by UID)</option>
+            </select>
+            <label for="userId">User UID (only for single user)</label>
+            <input id="userId" name="userId" type="text" placeholder="Paste Firebase UID" />
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" placeholder="Notification title" required />
+            <label for="body">Message</label>
+            <textarea id="body" name="body" rows="3" placeholder="Write the update" required></textarea>
+            <button type="submit">Send</button>
+          </form>
+          <div class="list" id="notification-list"></div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">User Directory</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Quota</th>
+              </tr>
+            </thead>
+            <tbody id="user-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="hero">
+        <div class="card">
+          <h2 class="section-title">Admin Access List</h2>
+          <div id="admin-list" class="list"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="pwa.js"></script>
+    <script type="module" src="admin.js"></script>
   </body>
 </html>
