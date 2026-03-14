@@ -33,11 +33,6 @@ const showMessage = (text, tone = "info") => {
   messageBox.dataset.tone = tone;
 };
 
-const consumeEntryToken = () => {
-  const allowed = sessionStorage.getItem("allowPageLoad") === "1";
-  if (allowed) sessionStorage.removeItem("allowPageLoad");
-  return allowed;
-};
 
 const toggleQr = () => {
   if (!paymentSelect || !phonepeQr) return;
@@ -112,12 +107,6 @@ let activeUser = null;
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    goToPage("index.html");
-    return;
-  }
-
-  if (!consumeEntryToken()) {
-    await signOut(auth);
     goToPage("index.html");
     return;
   }

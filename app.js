@@ -7,8 +7,7 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
   setPersistence,
-  browserSessionPersistence,
-  signOut,
+  browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
   doc,
@@ -33,7 +32,6 @@ const loginPass = document.querySelector("#login-password");
 const showRegisterPass = document.querySelector("#show-register-pass");
 const showLoginPass = document.querySelector("#show-login-pass");
 const messageBox = document.querySelector("#message");
-const isIndexPage = /\/(index\.html)?$/.test(window.location.pathname);
 
 const showMessage = (text, tone = "info") => {
   if (!messageBox) return;
@@ -43,17 +41,9 @@ const showMessage = (text, tone = "info") => {
 
 showMessage("Ready. Please login or register.", "info");
 
-setPersistence(auth, browserSessionPersistence).catch((err) => {
+setPersistence(auth, browserLocalPersistence).catch((err) => {
   console.warn("Auth persistence not set", err);
 });
-
-if (isIndexPage) {
-  signOut(auth).catch(() => undefined);
-}
-
-const markLoginEntry = () => {
-  sessionStorage.setItem("allowPageLoad", "1");
-};
 
 const bindToggle = (button, input) => {
   if (!button || !input) return;
@@ -171,7 +161,6 @@ if (registerForm) {
 
       await logEvent(user.uid, "register", { role });
       showMessage("Registration successful. Redirecting...", "success");
-      markLoginEntry();
       routeByRole(role);
     } catch (err) {
       showMessage(err.message, "error");
@@ -196,7 +185,6 @@ if (loginForm) {
       const profile = await ensureUserProfile(result.user, email);
       await logEvent(result.user.uid, "login", { role: profile.role });
       showMessage("Login successful. Redirecting...", "success");
-      markLoginEntry();
       routeByRole(profile.role);
     } catch (err) {
       showMessage(err.message, "error");
@@ -242,7 +230,6 @@ if (otpForm) {
       const profile = await ensureUserProfile(result.user, null, result.user.phoneNumber);
       await logEvent(result.user.uid, "login_phone", { role: profile.role });
       showMessage("OTP verified. Redirecting...", "success");
-      markLoginEntry();
       routeByRole(profile.role);
     } catch (err) {
       showMessage("Invalid OTP. Please try again.", "error");
@@ -252,7 +239,6 @@ if (otpForm) {
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) return;
-  if (isIndexPage) return;
   try {
     const profile = await ensureUserProfile(user);
     routeByRole(profile.role);
