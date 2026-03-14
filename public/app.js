@@ -6,6 +6,8 @@ import {
   onAuthStateChanged,
   RecaptchaVerifier,
   signInWithPhoneNumber,
+  setPersistence,
+  browserSessionPersistence,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
   doc,
@@ -38,6 +40,10 @@ const showMessage = (text, tone = "info") => {
 };
 
 showMessage("Ready. Please login or register.", "info");
+
+setPersistence(auth, browserSessionPersistence).catch((err) => {
+  console.warn("Auth persistence not set", err);
+});
 
 const bindToggle = (button, input) => {
   if (!button || !input) return;
