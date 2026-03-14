@@ -60,18 +60,23 @@
                 <label for="email">Email</label>
                 <input id="email" name="email" type="email" placeholder="you@email.com" required autocomplete="off" />
                 <label for="password">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Create password"
-                  required
-                  autocomplete="off"
-                />
-                <label class="show-pass">
-                  <input type="checkbox" id="show-register-pass" />
-                  Show password
-                </label>
+                <div class="password-field">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Create password"
+                    required
+                    autocomplete="off"
+                  />
+                  <button type="button" class="toggle-pass" id="show-register-pass" aria-label="Show password">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 5C6.5 5 2.1 8.4 1 12c1.1 3.6 5.5 7 11 7s9.9-3.4 11-7c-1.1-3.6-5.5-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"
+                      />
+                    </svg>
+                  </button>
+                </div>
                 <label for="phone">Phone</label>
                 <input id="phone" name="phone" type="tel" placeholder="Phone number" required autocomplete="off" />
                 <label for="address">Address</label>
@@ -105,18 +110,23 @@
                   autocomplete="off"
                 />
                 <label for="login-password">Password</label>
-                <input
-                  id="login-password"
-                  name="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  required
-                  autocomplete="off"
-                />
-                <label class="show-pass">
-                  <input type="checkbox" id="show-login-pass" />
-                  Show password
-                </label>
+                <div class="password-field">
+                  <input
+                    id="login-password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    required
+                    autocomplete="off"
+                  />
+                  <button type="button" class="toggle-pass" id="show-login-pass" aria-label="Show password">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 5C6.5 5 2.1 8.4 1 12c1.1 3.6 5.5 7 11 7s9.9-3.4 11-7c-1.1-3.6-5.5-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"
+                      />
+                    </svg>
+                  </button>
+                </div>
                 <button type="submit">Login</button>
               </form>
             </div>

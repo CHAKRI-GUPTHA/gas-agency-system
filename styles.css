@@ -434,6 +434,40 @@ button:hover::after {
   margin: 6px 0 8px;
 }
 
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  padding-right: 44px;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.toggle-pass svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.toggle-pass:hover {
+  color: var(--accent-2);
+}
+
 .qr-card::before {
   content: "";
   position: absolute;

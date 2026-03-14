@@ -39,17 +39,17 @@ const showMessage = (text, tone = "info") => {
 
 showMessage("Ready. Please login or register.", "info");
 
-if (showRegisterPass && registerPass) {
-  showRegisterPass.addEventListener("change", () => {
-    registerPass.type = showRegisterPass.checked ? "text" : "password";
+const bindToggle = (button, input) => {
+  if (!button || !input) return;
+  button.addEventListener("click", () => {
+    const isHidden = input.type === "password";
+    input.type = isHidden ? "text" : "password";
+    button.dataset.state = isHidden ? "shown" : "hidden";
   });
-}
+};
 
-if (showLoginPass && loginPass) {
-  showLoginPass.addEventListener("change", () => {
-    loginPass.type = showLoginPass.checked ? "text" : "password";
-  });
-}
+bindToggle(showRegisterPass, registerPass);
+bindToggle(showLoginPass, loginPass);
 
 const clearAutoFill = () => {
   const fields = document.querySelectorAll(
