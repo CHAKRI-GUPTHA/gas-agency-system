@@ -53,8 +53,22 @@
             <div class="card">
               <form id="register-form" method="post" autocomplete="off">
                 <h3 class="section-title">New Registration</h3>
-                <input class="trap-autofill" type="text" name="username" autocomplete="username" />
-                <input class="trap-autofill" type="password" name="password" autocomplete="current-password" />
+                <input
+                  class="trap-autofill"
+                  type="text"
+                  name="fake-username"
+                  autocomplete="username"
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
+                <input
+                  class="trap-autofill"
+                  type="password"
+                  name="fake-password"
+                  autocomplete="current-password"
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
                 <label for="name">Full Name</label>
                 <input id="name" name="name" type="text" placeholder="Full name" required autocomplete="off" />
                 <label for="email">Email</label>
@@ -98,8 +112,22 @@
             <div class="card">
               <form id="login-form" method="post" autocomplete="off">
                 <h3 class="section-title">Email Login</h3>
-                <input class="trap-autofill" type="text" name="username" autocomplete="username" />
-                <input class="trap-autofill" type="password" name="password" autocomplete="current-password" />
+                <input
+                  class="trap-autofill"
+                  type="text"
+                  name="fake-username"
+                  autocomplete="username"
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
+                <input
+                  class="trap-autofill"
+                  type="password"
+                  name="fake-password"
+                  autocomplete="current-password"
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
                 <label for="login-email">Email</label>
                 <input
                   id="login-email"
