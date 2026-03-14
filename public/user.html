@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard | Gas Agency System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0b1320" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-frame"></div>
+    <header>
+      <div>
+        <div class="tag">Customer Portal</div>
+        <div class="brand"><span id="portal-name">Customer</span> Dashboard</div>
+      </div>
+      <div class="toolbar">
+        <div class="badge">Annual Quota <span id="quota">-</span></div>
+        <button id="logout" class="secondary">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h2 class="section-title">Profile Snapshot</h2>
+          <p><strong>Name:</strong> <span id="profile-name">-</span></p>
+          <p><strong>Email:</strong> <span id="profile-email">-</span></p>
+          <p><strong>Address:</strong> <span id="profile-address">-</span></p>
+          <div class="notice">Stay within your yearly quota of 12 cylinders.</div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Book a Cylinder</h2>
+          <form id="booking-form">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" name="quantity" type="number" min="1" max="12" value="1" required />
+            <label for="payment">Payment Method</label>
+            <select id="payment" name="payment" required>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+              <option value="PhonePe">PhonePe QR</option>
+            </select>
+            <div class="amount-card">
+              <div class="amount-row">
+                <span>Gas Cylinder Amount</span>
+                <strong>₹824</strong>
+              </div>
+              <div class="amount-row">
+                <span>Service + Tax</span>
+                <strong>₹50</strong>
+              </div>
+              <div class="amount-row total">
+                <span>Total Payable</span>
+                <strong>₹874</strong>
+              </div>
+            </div>
+            <label class="confirm">
+              <input type="checkbox" id="confirm-pay" name="confirm" required />
+              I confirm the total amount ₹874 and want to send the request now.
+            </label>
+            <button type="submit">Send Request</button>
+          </form>
+          <div id="user-message" class="message" data-tone="info"></div>
+        </div>
+      </section>
+
+      <section class="hero">
+        <div class="card qr-card hidden" id="phonepe-qr">
+          <h2 class="section-title">PhonePe Payment</h2>
+          <p class="meta">Scan and pay using the PhonePe app.</p>
+          <img class="qr-image" src="assets/phonepe.jpeg" alt="PhonePe QR code for payment" />
+          <div class="meta">Payee: Durga Chakri Guptha</div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Booking History</h2>
+          <div id="booking-list" class="list"></div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Notifications</h2>
+          <div id="notice-list" class="list"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="pwa.js"></script>
+    <script type="module" src="user.js"></script>
+  </body>
+</html>
