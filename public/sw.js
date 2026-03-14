@@ -1,15 +1,17 @@
-﻿const CACHE_NAME = "gas-agency-v1";
+﻿const CACHE_NAME = "gas-agency-v2";
+const base = self.location.pathname.replace(/sw\.js$/, "");
 const ASSETS = [
-  "/public/index.html",
-  "/public/user.html",
-  "/public/admin.html",
-  "/public/styles.css",
-  "/public/app.js",
-  "/public/user.js",
-  "/public/admin.js",
-  "/public/pwa.js",
-  "/public/manifest.json",
-  "/public/assets/icon.svg",
+  `${base}`,
+  `${base}index.html`,
+  `${base}user.html`,
+  `${base}admin.html`,
+  `${base}styles.css`,
+  `${base}app.js`,
+  `${base}user.js`,
+  `${base}admin.js`,
+  `${base}pwa.js`,
+  `${base}manifest.json`,
+  `${base}assets/icon.svg`,
 ];
 
 self.addEventListener("install", (event) => {
@@ -32,7 +34,7 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(
     caches.match(request).then((cached) =>
-      cached || fetch(request).catch(() => caches.match("/public/index.html"))
+      cached || fetch(request).catch(() => caches.match(`${base}index.html`))
     )
   );
 });

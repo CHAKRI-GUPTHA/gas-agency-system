@@ -1,4 +1,4 @@
 ﻿export const goToPage = (page) => {
-  const base = window.location.pathname.includes("/public/") ? "/public/" : "/public/";
-  window.location.href = `${window.location.origin}${base}${page}`;
+  const target = new URL(page, window.location.href);
+  window.location.href = target.href;
 };

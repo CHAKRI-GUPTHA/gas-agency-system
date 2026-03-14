@@ -1,7 +1,7 @@
 ﻿{
   "name": "Gas Agency System",
   "short_name": "Gas Agency",
-  "start_url": "/public/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#0b1320",
   "theme_color": "#0b1320",
