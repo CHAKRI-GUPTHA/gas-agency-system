@@ -16,3 +16,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export { app, auth, db };
+<script>
+  window.location.href = "https://gasagencysystem-f1738.web.app";
+</script>
