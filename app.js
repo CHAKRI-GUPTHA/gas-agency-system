@@ -35,6 +35,20 @@ const showMessage = (text, tone = "info") => {
 
 showMessage("Ready. Please login or register.", "info");
 
+const clearAutoFill = () => {
+  const fields = document.querySelectorAll(
+    "#register-form input, #register-form textarea, #login-form input, #phone-form input, #otp-form input"
+  );
+  fields.forEach((field) => {
+    if (field) field.value = "";
+  });
+};
+
+window.addEventListener("load", () => {
+  setTimeout(clearAutoFill, 300);
+  setTimeout(clearAutoFill, 1200);
+});
+
 const logEvent = async (uid, action, details = {}) => {
   try {
     await addDoc(collection(db, "logs"), {
