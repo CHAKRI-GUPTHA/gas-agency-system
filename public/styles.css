@@ -415,6 +415,25 @@ button:hover::after {
   display: none;
 }
 
+.trap-autofill {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.show-pass {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 6px 0 8px;
+}
+
 .qr-card::before {
   content: "";
   position: absolute;

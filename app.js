@@ -25,6 +25,10 @@ const registerForm = document.querySelector("#register-form");
 const loginForm = document.querySelector("#login-form");
 const phoneForm = document.querySelector("#phone-form");
 const otpForm = document.querySelector("#otp-form");
+const registerPass = document.querySelector("#password");
+const loginPass = document.querySelector("#login-password");
+const showRegisterPass = document.querySelector("#show-register-pass");
+const showLoginPass = document.querySelector("#show-login-pass");
 const messageBox = document.querySelector("#message");
 
 const showMessage = (text, tone = "info") => {
@@ -34,6 +38,18 @@ const showMessage = (text, tone = "info") => {
 };
 
 showMessage("Ready. Please login or register.", "info");
+
+if (showRegisterPass && registerPass) {
+  showRegisterPass.addEventListener("change", () => {
+    registerPass.type = showRegisterPass.checked ? "text" : "password";
+  });
+}
+
+if (showLoginPass && loginPass) {
+  showLoginPass.addEventListener("change", () => {
+    loginPass.type = showLoginPass.checked ? "text" : "password";
+  });
+}
 
 const clearAutoFill = () => {
   const fields = document.querySelectorAll(

@@ -53,6 +53,8 @@
             <div class="card">
               <form id="register-form" method="post" autocomplete="off">
                 <h3 class="section-title">New Registration</h3>
+                <input class="trap-autofill" type="text" name="username" autocomplete="username" />
+                <input class="trap-autofill" type="password" name="password" autocomplete="current-password" />
                 <label for="name">Full Name</label>
                 <input id="name" name="name" type="text" placeholder="Full name" required autocomplete="off" />
                 <label for="email">Email</label>
@@ -64,8 +66,12 @@
                   type="password"
                   placeholder="Create password"
                   required
-                  autocomplete="new-password"
+                  autocomplete="off"
                 />
+                <label class="show-pass">
+                  <input type="checkbox" id="show-register-pass" />
+                  Show password
+                </label>
                 <label for="phone">Phone</label>
                 <input id="phone" name="phone" type="tel" placeholder="Phone number" required autocomplete="off" />
                 <label for="address">Address</label>
@@ -87,6 +93,8 @@
             <div class="card">
               <form id="login-form" method="post" autocomplete="off">
                 <h3 class="section-title">Email Login</h3>
+                <input class="trap-autofill" type="text" name="username" autocomplete="username" />
+                <input class="trap-autofill" type="password" name="password" autocomplete="current-password" />
                 <label for="login-email">Email</label>
                 <input
                   id="login-email"
@@ -103,8 +111,12 @@
                   type="password"
                   placeholder="Enter your password"
                   required
-                  autocomplete="new-password"
+                  autocomplete="off"
                 />
+                <label class="show-pass">
+                  <input type="checkbox" id="show-login-pass" />
+                  Show password
+                </label>
                 <button type="submit">Login</button>
               </form>
             </div>
