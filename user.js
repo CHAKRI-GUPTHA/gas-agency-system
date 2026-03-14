@@ -33,7 +33,7 @@ const showMessage = (text, tone = "info") => {
   messageBox.dataset.tone = tone;
 };
 
-const IDLE_MS = 5 * 60 * 1000;
+const IDLE_MS = 3 * 60 * 1000;
 let idleTimer = null;
 
 const startIdleTimer = () => {
