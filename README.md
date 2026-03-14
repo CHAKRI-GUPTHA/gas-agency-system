@@ -4,7 +4,8 @@ A lightweight online LPG cylinder booking system with user registration, booking
 
 ## Features
 - User registration and login (Firebase Auth)
-- Cylinder booking with Paytm/COD payment option
+- Cylinder booking with PhonePe QR / Cash on Delivery
+- Phone OTP login (Firebase Phone Auth)
 - Admin approval or rejection of bookings
 - Booking history and quota tracking (12 cylinders/year)
 - Notifications for approvals and system updates
@@ -23,14 +24,15 @@ A lightweight online LPG cylinder booking system with user registration, booking
 - `public/user.js` — User booking workflow
 - `public/admin.js` — Admin approvals and notifications
 - `public/firebase.js` — Firebase config
-- `firestore.rules` — Sample Firestore rules
+- `firestore.rules` — Firestore rules
 
 ## Setup
 1. Create a Firebase project.
 2. Enable Authentication → Email/Password.
-3. Create a Firestore database (in test mode for first run).
-4. Update `public/firebase.js` with your Firebase config.
-5. Serve the `public` folder:
+3. Enable Authentication → Phone (for OTP login).
+4. Create a Firestore database (in test mode for first run).
+5. Update `public/firebase.js` with your Firebase config.
+6. Serve the `public` folder:
 
 ```bash
 npx serve public
@@ -44,17 +46,27 @@ python -m http.server 5500 --directory public
 
 Then open the local URL in your browser.
 
+## Public Deployment (Firebase Hosting)
+1. Install Firebase CLI: `npm install -g firebase-tools`
+2. Login: `firebase login`
+3. Initialize hosting: `firebase init hosting`
+   - Public directory: `public`
+   - SPA: `No`
+4. Deploy: `firebase deploy`
+5. Add your Hosting domain to Firebase Auth → **Authorized domains**:
+   - `your-project.web.app`
+   - `your-project.firebaseapp.com`
+
 ## Admin Setup
 Admins are identified by email in `public/app.js`:
 
 ```js
-const ADMIN_EMAILS = ["admin@example.com"];
+const ADMIN_EMAILS = ["chakriguptha123@gmail.com"];
 ```
 
-- Add your admin email to that list.
+- Add all admin emails to that list.
 - Create the account from the registration form.
-- For stronger security, set a custom admin claim in Firebase and tighten rules.
-  The sample `firestore.rules` expects `request.auth.token.admin == true`.
+- Ensure Firestore rules allow admin role access.
 
 ## Firestore Collections
 - `users` — profile, role, quota
@@ -65,11 +77,7 @@ const ADMIN_EMAILS = ["admin@example.com"];
 ## Logging
 Every login, booking, and admin action writes to the `logs` collection. This is used for debugging and auditing.
 
-## Deployment Options
-- Local system (quick testing)
-- Firebase Hosting (recommended for this stack)
-- Any static hosting provider
-
 ## Notes
 - Email notifications are simulated via the in-app notifications list. Real emails require Firebase Cloud Functions or third‑party services.
+- Phone OTP SMS requires Firebase billing for real messages. For demos, use Firebase test phone numbers.
 
